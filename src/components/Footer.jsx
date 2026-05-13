@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-xl flex items-center justify-center shadow-lg">
-                <Rocket className="text-white w-6 h-6" />
+                <span className="text-white font-bold text-xl">MK</span>
               </div>
               <span className="text-2xl font-display font-bold tracking-tight">
                 MK <span className="text-accent-blue">Enterprise India</span>
