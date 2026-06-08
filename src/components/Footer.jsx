@@ -8,11 +8,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-8">
-              <div className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-xl">MK</span>
-              </div>
+              <img src="/logo.jpeg" alt="MK Enterprise Logo" className="w-12 h-12 object-contain" />
               <span className="text-2xl font-display font-bold tracking-tight">
-                MK <span className="text-accent-blue">Enterprise India</span>
+                MK <span className="text-accent-blue">Enterprise</span>
               </span>
             </div>
             <p className="text-slate-600 mb-8 max-w-sm leading-relaxed">
@@ -69,7 +67,7 @@ const Footer = () => {
 
         <div className="border-t border-slate-200 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} MK Enterprise India. All rights reserved.
+            © {new Date().getFullYear()} MK Enterprise. All rights reserved.
           </p>
           <div className="flex gap-8 text-sm text-slate-500">
             <a href="#" className="hover:text-slate-700">Privacy Policy</a>

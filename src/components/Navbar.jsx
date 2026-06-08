@@ -34,9 +34,7 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-2 cursor-pointer"
         >
-          <div className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-xl flex items-center justify-center shadow-lg">
-            <span className="text-white font-bold text-xl">MK</span>
-          </div>
+          <img src="/logo.jpeg" alt="MK Enterprise Logo" className="w-12 h-12 object-contain" />
           <span className="text-2xl font-display font-bold tracking-tight">
             MK <span className="text-accent-blue">Enterprise</span>
           </span>

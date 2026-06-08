@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, Loader2, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
+  const [formStatus, setFormStatus] = useState('idle'); // idle, loading, success, error
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('loading');
+
+    const formData = new FormData(e.target);
+    // Replace YOUR_ACCESS_KEY_HERE with your actual Web3Forms access key
+    formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus('success');
+        e.target.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
+  };
+
   return (
     <section id="contact" className="py-24 relative">
       <div className="container mx-auto px-6">
@@ -59,50 +88,88 @@ const Contact = () => {
               <Send className="w-64 h-64 text-accent-blue" />
             </div>
             
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
-                  <input 
-                    type="text" 
-                    placeholder="John Doe" 
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors text-slate-800 placeholder:text-slate-400"
-                  />
+            {formStatus === 'success' ? (
+              <div className="h-full flex flex-col items-center justify-center text-center space-y-6 py-12">
+                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-10 h-10" />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
-                  <input 
-                    type="email" 
-                    placeholder="john@example.com" 
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors text-slate-800 placeholder:text-slate-400"
-                  />
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-800">Message Sent!</h3>
+                  <p className="text-slate-500 mt-2">Thank you for reaching out. We'll get back to you shortly.</p>
                 </div>
+                <button 
+                  onClick={() => setFormStatus('idle')}
+                  className="text-accent-blue font-bold hover:underline"
+                >
+                  Send another message
+                </button>
               </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Subject</label>
-                <select className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors appearance-none text-slate-800">
-                  <option>Software Development</option>
-                  <option>Web Development</option>
-                  <option>IT Solutions</option>
-                  <option>Government Tender</option>
-                  <option>Other</option>
-                </select>
-              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
+                    <input 
+                      required
+                      name="name"
+                      type="text" 
+                      placeholder="John Doe" 
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors text-slate-800 placeholder:text-slate-400"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
+                    <input 
+                      required
+                      name="email"
+                      type="email" 
+                      placeholder="john@example.com" 
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors text-slate-800 placeholder:text-slate-400"
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Subject</label>
+                  <select 
+                    name="subject"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors appearance-none text-slate-800"
+                  >
+                    <option>Software Development</option>
+                    <option>Web Development</option>
+                    <option>IT Solutions</option>
+                    <option>Government Tender</option>
+                    <option>Other</option>
+                  </select>
+                </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Message</label>
-                <textarea 
-                  rows="5" 
-                  placeholder="How can we help you?" 
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors resize-none text-slate-800 placeholder:text-slate-400"
-                ></textarea>
-              </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-500 uppercase tracking-wider">Message</label>
+                  <textarea 
+                    required
+                    name="message"
+                    rows="5" 
+                    placeholder="How can we help you?" 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors resize-none text-slate-800 placeholder:text-slate-400"
+                  ></textarea>
+                </div>
 
-              <button className="btn-primary w-full py-5 text-lg flex items-center justify-center gap-3">
-                Send Message <Send className="w-5 h-5" />
-              </button>
-            </form>
+                {formStatus === 'error' && (
+                  <p className="text-red-500 text-sm font-medium">Something went wrong. Please try again later.</p>
+                )}
+
+                <button 
+                  disabled={formStatus === 'loading'}
+                  className="btn-primary w-full py-5 text-lg flex items-center justify-center gap-3 disabled:opacity-70"
+                >
+                  {formStatus === 'loading' ? (
+                    <>Sending... <Loader2 className="w-5 h-5 animate-spin" /></>
+                  ) : (
+                    <>Send Message <Send className="w-5 h-5" /></>
+                  )}
+                </button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
