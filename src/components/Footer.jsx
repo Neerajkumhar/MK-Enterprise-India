@@ -69,6 +69,17 @@ const Footer = () => {
           <p className="text-slate-500 text-sm">
             © {new Date().getFullYear()} MK Enterprise. All rights reserved.
           </p>
+          <p className="text-slate-500 text-sm flex items-center gap-1">
+            Made with <span className="text-red-500 animate-pulse">❤️</span> by{' '}
+            <a 
+              href="https://www.visuark.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="font-semibold text-cyan-600 drop-shadow-[0_0_8px_rgba(6,182,212,0.6)] hover:text-cyan-500 transition-all duration-300"
+            >
+              VISUARK DIGITAL AGENCY
+            </a>
+          </p>
           <div className="flex gap-8 text-sm text-slate-500">
             <a href="#" className="hover:text-slate-700">Privacy Policy</a>
             <a href="#" className="hover:text-slate-700">Terms of Service</a>
