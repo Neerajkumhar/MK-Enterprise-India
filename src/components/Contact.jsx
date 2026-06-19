@@ -113,7 +113,7 @@ const Contact = () => {
                       required
                       name="name"
                       type="text" 
-                      placeholder="John Doe" 
+                      placeholder="Ramesh Kumar" 
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors text-slate-800 placeholder:text-slate-400"
                     />
                   </div>
@@ -123,7 +123,7 @@ const Contact = () => {
                       required
                       name="email"
                       type="email" 
-                      placeholder="john@example.com" 
+                      placeholder="ramesh@example.com" 
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-6 py-4 focus:outline-none focus:border-accent-blue transition-colors text-slate-800 placeholder:text-slate-400"
                     />
                   </div>

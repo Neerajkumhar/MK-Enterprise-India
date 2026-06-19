@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-8">
-              <img src="/logo.jpeg" alt="MK Enterprise Logo" className="w-12 h-12 object-contain" />
+              <img src="/logo.jpeg" alt="MK Enterprise Logo" className="w-16 h-16 object-contain" />
               <span className="text-2xl font-display font-bold tracking-tight">
                 MK <span className="text-accent-blue">Enterprise</span>
               </span>

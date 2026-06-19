@@ -34,7 +34,7 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-2 cursor-pointer"
         >
-          <img src="/logo.jpeg" alt="MK Enterprise Logo" className="w-12 h-12 object-contain" />
+          <img src="/logo.jpeg" alt="MK Enterprise Logo" className="w-16 h-16 object-contain" />
           <span className="text-2xl font-display font-bold tracking-tight">
             MK <span className="text-accent-blue">Enterprise</span>
           </span>
